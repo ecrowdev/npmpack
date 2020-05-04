@@ -1,0 +1,36 @@
+{
+  "name": "@ecrowjs/npmpack",
+  "version": "1.0.0",
+  "description": "A cleaner way to publish an NPM Package in your workspace by preparing it in a subfolder.",
+  "main": "index.js",
+  "bin": {
+    "npmpack": "bin.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ecrowjs/npmpack.git"
+  },
+  "keywords": [
+    "npm",
+    "package",
+    "publish",
+    "prepare",
+    "subfolder",
+    "workspace",
+    "node",
+    "js",
+    "library"
+  ],
+  "author": "Eric Crowell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ecrowjs/npmpack/issues"
+  },
+  "homepage": "https://github.com/ecrowjs/npmpack#readme",
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  }
+}

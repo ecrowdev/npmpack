@@ -1,0 +1,9 @@
+# Source files
+src/
+
+# Git ignore file
+.gitignore
+
+# Configurations
+tsconfig.json
+*.yml
