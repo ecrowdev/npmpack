@@ -11,7 +11,7 @@ NPM Pack is a tool to help organize a nodejs project by packing the deliverable 
 
 ## Installation
 
-NPM Packer can be installed as an [npm package](https://www.npmjs.com/package/@ecrowjs/npmpack) itself.
+NPM Pack can be installed as an [npm package](https://www.npmjs.com/package/@ecrowjs/npmpack) itself.
 
 ```sh
 # Install with NPM

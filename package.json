@@ -1,12 +1,15 @@
 {
   "name": "@ecrowjs/npmpack",
   "version": "1.0.0",
-  "description": "A cleaner way to publish an NPM Package in your workspace by preparing it in a subfolder.",
+  "description": "A clean way to publish an NPM Package in your workspace by preparing it in a subfolder.",
   "main": "index.js",
   "bin": {
-    "npmpack": "bin.js"
+    "npmpack": "npmpack.js"
   },
   "scripts": {
+    "cli": "ts-node-script npmpack.ts --outDir . --declarationDir .",
+    "build": "tsc -p ./tsconfig.json",
+    "clean": "rimraf ./*.js ./*.js.map ./*.d.ts ./src/*.js ./src/*.js.map ./src/*.d.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,6 +34,13 @@
   },
   "homepage": "https://github.com/ecrowjs/npmpack#readme",
   "devDependencies": {
+    "@types/yargs": "^15.0.4",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "glob": "^7.1.6",
+    "yargs": "^15.3.1"
   }
 }

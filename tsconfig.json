@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "sourceMap": true,
+    "outDir": "",
+    "declaration": true,
+    "declarationDir": "",
+    "resolveJsonModule": true
+  },
+  "files": ["./src/npmpack.ts"],
+  "exclude": ["./node_modules"]
+}
