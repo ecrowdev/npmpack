@@ -5,15 +5,21 @@
  * @author Eric Crowell
  */
 
-import * as yargs from 'yargs';
+import yargs = require('yargs');
 import * as NPMPack from './index';
-import packageJson from '../package.json';
+import packageJson from './package.json';
 
 /**
  * Command configuration.
  */
 const command = yargs
   .options({
+    root: {
+      alias: 'r',
+      array: true,
+      describe: 'Root directory containing the package files',
+      default: '.',
+    },
     files: {
       alias: 'f',
       array: true,
@@ -24,7 +30,7 @@ const command = yargs
       alias: 'i',
       array: true,
       describe: 'Glob pattern(s) of files to include',
-      default: ['./src/**/*.js'],
+      default: ['src/**/*.js'],
     },
     exclude: {
       alias: 'e',
@@ -38,19 +44,14 @@ const command = yargs
       describe: 'Path to output matched files',
       default: 'pkg',
     },
-    package: {
+    props: {
       alias: 'p',
       string: true,
       describe: 'JSON string to override properties in the package.json',
       default: '{}',
-    },
-    config: {
-      alias: 'c',
-      config: true,
-      describe: 'Path to JSON config file',
-      default: 'npmpack.json',
-    },
+    }
   })
+  .config()
   .version(packageJson.version);
 
 /**

@@ -107,3 +107,7 @@ dist
 *.js
 *.map
 *.d.ts
+
+# Lock files
+*.lock
+*-lock*

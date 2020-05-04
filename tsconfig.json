@@ -6,11 +6,9 @@
     "esModuleInterop": true,
     "strict": true,
     "sourceMap": true,
-    "outDir": "",
     "declaration": true,
-    "declarationDir": "",
     "resolveJsonModule": true
   },
-  "files": ["./src/npmpack.ts"],
-  "exclude": ["./node_modules"]
+  "files": ["./index.ts", "./npmpack.ts"],
+  "exclude": ["./**/*.*.ts"]
 }
