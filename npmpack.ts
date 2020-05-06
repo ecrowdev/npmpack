@@ -10,47 +10,54 @@ import * as NPMPack from './index';
 import packageJson from './package.json';
 
 /**
+ * Yargs options
+ */
+const yargsOptions: { [key: string]: yargs.Options } = {
+  root: {
+    alias: 'r',
+    string: true,
+    describe: 'Root directory containing the package files',
+    default: '.',
+  },
+  files: {
+    alias: 'f',
+    array: true,
+    describe: 'Individual files to include',
+    default: [],
+  },
+  include: {
+    alias: 'i',
+    array: true,
+    describe: 'Glob pattern(s) of files to include',
+    default: ['src/**/*.js'],
+  },
+  exclude: {
+    alias: 'e',
+    array: true,
+    describe: 'Glob pattern(s) of files to exclude',
+    default: [],
+  },
+  output: {
+    alias: 'o',
+    string: true,
+    type: 'string',
+    describe: 'Path to output matched files',
+    default: 'pkg',
+  },
+  package: {
+    alias: 'p',
+    string: true,
+    array: true,
+    describe: 'JSON string to override properties in the package.json',
+    default: {},
+  }
+};
+
+/**
  * Command configuration.
  */
 const command = yargs
-  .options({
-    root: {
-      alias: 'r',
-      array: true,
-      describe: 'Root directory containing the package files',
-      default: '.',
-    },
-    files: {
-      alias: 'f',
-      array: true,
-      describe: 'Individual files to include',
-      default: [],
-    },
-    include: {
-      alias: 'i',
-      array: true,
-      describe: 'Glob pattern(s) of files to include',
-      default: ['src/**/*.js'],
-    },
-    exclude: {
-      alias: 'e',
-      array: true,
-      describe: 'Glob pattern(s) of files to exclude',
-      default: [],
-    },
-    output: {
-      alias: 'o',
-      string: true,
-      describe: 'Path to output matched files',
-      default: 'pkg',
-    },
-    props: {
-      alias: 'p',
-      string: true,
-      describe: 'JSON string to override properties in the package.json',
-      default: '{}',
-    }
-  })
+  .options(yargsOptions)
   .config()
   .version(packageJson.version);
 
@@ -59,4 +66,63 @@ const command = yargs
  */
 const argv = command.argv;
 
-console.log('You did it:', argv);
+/**
+ * Type checking
+ * Mainly for the config file.
+ */
+function typeCheck(args: { [key: string]: any }) {
+  const types: { [key: string ]: string } = {
+    'array': 'object',
+    'boolean': 'boolean',
+    'count': 'boolean',
+    'number': 'number',
+    'string': 'string'
+  }
+  for (let argKey in args) {
+    // Skip aliases since full option argKey will be the same.
+    if (argKey.length <= 1 || ['_', '$0'].includes(argKey)) {
+      continue;
+    }
+
+    const arg: any = args[argKey];
+    const opts: yargs.Options = yargsOptions[argKey];
+
+    /**
+     * If opt is undefined, means an invalid option was passed in.
+     */
+    if (!opts) {
+      console.warn(`WARN: Unknown option "${argKey}" was passed in.`);
+      continue;
+    }
+
+    /**
+     * Type check the passed in value.
+     */
+    let foundTypes = [];
+    let valid = false;
+    for (let optKey in opts) {
+      if (types[optKey]) {
+        foundTypes.push(optKey);
+        if (typeof arg === types[optKey]) {
+          valid = true;
+          break;
+        }
+      }
+    }
+
+    if (!valid) {
+      console.error(`
+      ERROR: Option "${argKey}" (${arg}) is not the correct type.\n
+      Expected [${foundTypes.join('|')}] but got [${typeof arg}].
+      `);
+      process.exit(1);
+    }
+  }
+}
+
+/**
+ * Process
+ */
+typeCheck(argv);
+
+console.log('done:', argv);
