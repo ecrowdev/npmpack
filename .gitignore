@@ -107,6 +107,7 @@ dist
 *.js
 *.map
 *.d.ts
+!jest.config.js
 
 # Lock files
 *.lock

@@ -11,7 +11,7 @@
     "tscli": "rimraf pkg/* && ts-node-script npmpack.ts",
     "build": "npm run clean && tsc -p ./tsconfig.json",
     "clean": "rimraf ./*.js ./*.js.map ./*.d.ts ./src/*.js ./src/*.js.map ./src/*.d.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -36,8 +36,11 @@
   "homepage": "https://github.com/ecrowjs/npmpack#readme",
   "devDependencies": {
     "@types/glob": "^7.1.1",
+    "@types/jest": "^25.2.1",
     "@types/yargs": "^15.0.4",
+    "jest": "^25.0.0",
     "rimraf": "^3.0.2",
+    "ts-jest": "^25.5.0",
     "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
   },
