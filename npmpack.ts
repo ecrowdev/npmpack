@@ -19,10 +19,10 @@ const yargsOptions: { [key: string]: yargs.Options } = {
     describe: 'Root directory containing the package files',
     default: '.',
   },
-  files: {
+  copy: {
     alias: 'f',
     array: true,
-    describe: 'Individual files to include',
+    describe: 'Individual files or directories to copy',
     default: [],
   },
   include: {
@@ -44,13 +44,13 @@ const yargsOptions: { [key: string]: yargs.Options } = {
     describe: 'Path to output matched files',
     default: 'pkg',
   },
-  package: {
+  packagejson: {
     alias: 'p',
     string: true,
     array: true,
     describe: 'JSON string to override properties in the package.json',
     default: {},
-  }
+  },
 };
 
 /**
@@ -71,13 +71,13 @@ const argv = command.argv;
  * Mainly for the config file.
  */
 function typeCheck(args: { [key: string]: any }) {
-  const types: { [key: string ]: string } = {
-    'array': 'object',
-    'boolean': 'boolean',
-    'count': 'boolean',
-    'number': 'number',
-    'string': 'string'
-  }
+  const types: { [key: string]: string } = {
+    array: 'object',
+    boolean: 'boolean',
+    count: 'boolean',
+    number: 'number',
+    string: 'string',
+  };
   for (let argKey in args) {
     // Skip aliases since full option argKey will be the same.
     if (argKey.length <= 1 || ['_', '$0'].includes(argKey)) {
@@ -125,4 +125,14 @@ function typeCheck(args: { [key: string]: any }) {
  */
 typeCheck(argv);
 
-console.log('done:', argv);
+/**
+ * Execute NPMPack.
+ */
+NPMPack.execute({
+  root: argv.root as string,
+  copy: argv.copy as string[],
+  include: argv.include as string[],
+  exclude: argv.exclude as string[],
+  output: argv.output as string,
+  packagejson: argv.packagejson as string | NPMPack.TObject,
+});
