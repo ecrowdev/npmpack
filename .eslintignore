@@ -1,0 +1,7 @@
+# Test Folder
+# TODO: Create new tsconfig/tslint project for it later
+test/
+
+# Config files
+*.config.js
+*.config
