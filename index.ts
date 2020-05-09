@@ -177,14 +177,12 @@ export function getConfiguration(options: Options = {}): Configuration {
 export function execute(options: Options = {}): void {
 	const {
 		root,
-		/**copy, include, exclude,*/ output,
+		copy,
+		include,
+		exclude,
+		output,
 		packagejson,
 	} = getConfiguration(options);
-
-	/**
-	 * The array of all files and directories to copy.
-	 */
-	let filesDirs: string[] = [];
 
 	/**
 	 * Prepare the output directory.
@@ -222,18 +220,17 @@ export function execute(options: Options = {}): void {
 	);
 
 	/**
-	 * Find supportive files from the root directory.
+	 * Locate and copy files.
 	 */
-	filesDirs = filesDirs.concat(
-		getFilesGlob(
-			[`${root}/README*`, `${root}/LICENSE*`, `${root}/CHANGELOG*`],
-			[],
-			true
-		)
+	const coreFiles = getFilesGlob(
+		[`${root}/README*`, `${root}/LICENSE*`, `${root}/CHANGELOG*`],
+		[],
+		true
 	);
 
-	/**
-	 * Finally, copy the files and directories to the package folder.
-	 */
+	const globFilesDirs = getFilesGlob(include, exclude);
+
+	const filesDirs = [...copy, ...coreFiles, ...globFilesDirs];
+
 	copyFilesDirs(filesDirs, output);
 }
