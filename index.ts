@@ -7,7 +7,7 @@ import fs = require('fs-extra');
 import p = require('path');
 import glob = require('glob');
 
-export type TObject = { [key: string]: any };
+export type ObjectType = { [key: string]: unknown };
 
 /**
  * NPM Pack options.
@@ -36,7 +36,7 @@ export interface Options {
 	/**
 	 * JSON string or JSON Object to override properties in the package.json
 	 */
-	packagejson?: string | TObject;
+	packagejson?: string | ObjectType;
 }
 
 export interface StrictOptions {
@@ -63,7 +63,7 @@ export interface StrictOptions {
 	/**
 	 * JSON string or JSON Object to override properties in the package.json
 	 */
-	packagejson: { [key: string]: any };
+	packagejson: ObjectType;
 }
 
 /**
@@ -121,12 +121,12 @@ export function createDirectory(path: string): void {
  * Fancy parse JSON string.
  * @param path File path
  */
-export function parseJSON(json: string | TObject): TObject {
+export function parseJSON(json: string | ObjectType): ObjectType {
 	let returnJson = json;
 	if (typeof json === 'string') {
 		returnJson = JSON.parse(json);
 	}
-	return returnJson as TObject;
+	return returnJson as ObjectType;
 }
 
 /**
@@ -167,7 +167,7 @@ export function execute(options: Options = {}): void {
 		...options,
 	} as StrictOptions;
 	const { root, /**copy, include, exclude,*/ output } = config;
-	const packagejson: TObject = parseJSON(config.packagejson);
+	const packagejson: ObjectType = parseJSON(config.packagejson);
 
 	/**
 	 * The array of all files and directories to copy.

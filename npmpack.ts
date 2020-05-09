@@ -70,7 +70,7 @@ const argv = command.argv;
  * Type checking
  * Mainly for the config file.
  */
-function typeCheck(args: { [key: string]: any }): void {
+function typeCheck(args: NPMPack.ObjectType): void {
 	const types: { [key: string]: string } = {
 		array: 'object',
 		boolean: 'boolean',
@@ -84,7 +84,7 @@ function typeCheck(args: { [key: string]: any }): void {
 			continue;
 		}
 
-		const arg: any = args[argKey];
+		const arg: unknown = args[argKey];
 		const opts: yargs.Options = yargsOptions[argKey];
 
 		/**
@@ -134,5 +134,5 @@ NPMPack.execute({
 	include: argv.include as string[],
 	exclude: argv.exclude as string[],
 	output: argv.output as string,
-	packagejson: argv.packagejson as string | NPMPack.TObject,
+	packagejson: argv.packagejson as string | NPMPack.ObjectType,
 });
