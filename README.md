@@ -4,6 +4,7 @@
 <div align="center">
 
 [![npm package](https://img.shields.io/npm/v/@ecrowjs/npmpack/latest.svg)](https://www.npmjs.com/package/@ecrowjs/npmpack)
+[![build](https://img.shields.io/travis/ecrowjs/npmpack/master)](https://travis-ci.org/github/ecrowjs/npmpack)
 
 NPM Pack is a tool to help organize a nodejs project by packing the deliverable files into a subfolder with it's own package.json.
 
