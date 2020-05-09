@@ -39,7 +39,7 @@ export interface Options {
 	packagejson?: string | ObjectType;
 }
 
-export interface StrictOptions {
+export interface Configuration {
 	/**
 	 * Root directory containing the package files
 	 */
@@ -156,18 +156,30 @@ export function copyFilesDirs(filesDirs: string[], path: string): void {
 }
 
 /**
+ * Gets the configuration from options
+ * @param options An object with options to override configuration properties.
+ */
+export function getConfiguration(options: Options = {}): Configuration {
+	const tempConfig = {
+		...defaultOptions,
+		...options,
+	} as Configuration;
+
+	return {
+		...tempConfig,
+		packagejson: parseJSON(tempConfig.packagejson),
+	};
+}
+
+/**
  * The main pack execution function
  */
 export function execute(options: Options = {}): void {
-	/**
-	 * Set default properties on any configuration that wasn't set.
-	 */
-	const config = {
-		...defaultOptions,
-		...options,
-	} as StrictOptions;
-	const { root, /**copy, include, exclude,*/ output } = config;
-	const packagejson: ObjectType = parseJSON(config.packagejson);
+	const {
+		root,
+		/**copy, include, exclude,*/ output,
+		packagejson,
+	} = getConfiguration(options);
 
 	/**
 	 * The array of all files and directories to copy.

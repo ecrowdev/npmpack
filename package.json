@@ -11,8 +11,9 @@
     "tscli": "rimraf pkg/* && ts-node-script npmpack.ts",
     "build": "npm run clean && tsc -p ./tsconfig.json",
     "clean": "rimraf ./*.js ./*.js.map ./*.d.ts ./src/*.js ./src/*.js.map ./src/*.d.ts",
-    "test": "jest",
-    "lint": "eslint ."
+    "test": "npm run test:lint",
+    "test:unit": "jest",
+    "test:lint": "eslint ."
   },
   "repository": {
     "type": "git",
