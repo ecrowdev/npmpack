@@ -20,7 +20,7 @@ const yargsOptions: { [key: string]: yargs.Options } = {
 		default: '.',
 	},
 	copy: {
-		alias: 'f',
+		alias: 'c',
 		array: true,
 		describe: 'Individual files or directories to copy',
 		default: [],
@@ -29,7 +29,7 @@ const yargsOptions: { [key: string]: yargs.Options } = {
 		alias: 'i',
 		array: true,
 		describe: 'Glob pattern(s) of files to include',
-		default: ['src/**/*.js'],
+		default: [],
 	},
 	exclude: {
 		alias: 'e',

@@ -147,9 +147,6 @@ export function copyFilesDirs(filesDirs: string[], path: string): void {
 		const fileDirStats = fs.lstatSync(fileDir);
 
 		if (fileDirStats.isFile() || fileDirStats.isDirectory()) {
-			// Copy the template file to the new path with the new name.
-			// fs.copyFileSync(`${PATH_TEMPLATES}/${file}`, fullFilePath);
-			console.log('FILE!: ', fileDir);
 			fs.copySync(fileDir, `${path}/${p.basename(fileDir)}`);
 		}
 	}

@@ -8,6 +8,8 @@
     "strict": true,
     "sourceMap": true,
     "declaration": true,
+    "outDir": ".lib",
+    "declarationDir": ".lib",
     "resolveJsonModule": true
   },
   "files": ["./index.ts", "./npmpack.ts"],

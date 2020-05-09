@@ -115,3 +115,7 @@ dist
 
 # pkg output
 pkg/
+.pkg
+
+# library
+.lib

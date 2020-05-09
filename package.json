@@ -8,9 +8,10 @@
   },
   "scripts": {
     "cli": "node npmpack.js",
-    "tscli": "rimraf pkg/* && ts-node-script npmpack.ts",
-    "build": "npm run clean && tsc -p ./tsconfig.json",
-    "clean": "rimraf ./*.js ./*.js.map ./*.d.ts ./src/*.js ./src/*.js.map ./src/*.d.ts",
+    "tscli": "ts-node-script npmpack.ts",
+    "build": "npm run clean && tsc -p ./tsconfig.json && npm run npmpack",
+    "npmpack": "ts-node-script npmpack.ts --copy .lib/* --output .pkg",
+    "clean": "rimraf .lib .pkg",
     "test": "npm run test:lint",
     "test:unit": "jest",
     "test:lint": "eslint ."
