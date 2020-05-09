@@ -5,3 +5,4 @@ test/
 # Config files
 *.config.js
 *.config
+*.yml
