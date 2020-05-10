@@ -34,7 +34,13 @@ yarn global add @ecrowjs/npmpack
 
 NPM Pack can be interfaced on the command line or through ES2015 imports.
 
+* [CLI Usage](#cli-usage)
+* [Module Usage](#module-usage)
+
 ### CLI Usage
+
+* [Flag Options](#flag-options)
+* [Configuration File](#configuration-file)
 
 ```sh
 $ npmpack [...flags]
@@ -43,7 +49,7 @@ $ npmpack [...flags]
 Example: Select all files under the `lib`, copy the `dist` directory, and output them under the `pkg` folder.
 
 ```sh
-npmpack --copy lib/* dist --output pkg
+$ npmpack --copy lib/* dist --output pkg
 ```
 
 The `pkg` folder will include all files from `lib`, the `dist` folder itself, and your core package files: `LICENSE`, `README`, `CHANGELOG`, and `package.json`.
@@ -80,14 +86,14 @@ The `pkg` folder will include all files from `lib`, the `dist` folder itself, an
 | --packagejson  | JSON string to override package.json properties     | string   | "{}"    |
 | --root         | The root of your project where package.json resides | string   | .       |
 
-#### JSON Configuration File
+#### Configuration File
 
 When using the `--config` option, you can pass the path to a json file that contains the options you want to pass in.
 
 For example:
 
 ```sh
-npmpack --config npmpack.json
+$ npmpack --config npmpack.json
 ```
 
 `npmpack.json`
@@ -102,4 +108,27 @@ npmpack --config npmpack.json
         "version": "<some_other_version>"
     }
 }
+```
+
+### Module Usage
+
+NPM Pack can also be included as a module for one of your custom build script.
+
+```javascript
+// CommonJS
+const NPMPack = require('@ecrowjs/npmpack');
+// ES6
+import * as NPMPack from '@ecrowjs/npmpack');
+
+// Execute NPMPack with some optional configuration.
+NPMPack.execute({
+    root: ".",
+    copy: ["dist"],
+    include: ["lib/**/*.ts"],
+    exclude: ["lib/**/*.test.ts"],
+    packagejson: {
+        "name": "Changed Package Name",
+        "version": "<some_other_version>"
+    }
+})
 ```
