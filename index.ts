@@ -219,13 +219,13 @@ export function execute(options: Options = {}): void {
 	/**
 	 * Locate and copy files.
 	 */
+	const globFilesDirs = getFilesGlob(include, exclude);
+
 	const coreFiles = getFilesGlob(
 		[`${root}/README*`, `${root}/LICENSE*`, `${root}/CHANGELOG*`],
 		[],
 		true
 	);
-
-	const globFilesDirs = getFilesGlob(include, exclude);
 
 	const filesDirs = [...copy, ...coreFiles, ...globFilesDirs];
 

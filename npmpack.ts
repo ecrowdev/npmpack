@@ -20,7 +20,7 @@ const yargsOptions: { [key: string]: yargs.Options } = {
 		default: '.',
 	},
 	copy: {
-		alias: 'c',
+		alias: ['c', 'f'],
 		array: true,
 		describe: 'Individual files or directories to copy',
 		default: [],
@@ -57,6 +57,10 @@ const yargsOptions: { [key: string]: yargs.Options } = {
  * Command configuration.
  */
 const command = yargs
+	.usage(
+		'$0 [...flags]',
+		'Organizes a separate directory for your NPM package files'
+	)
 	.options(yargsOptions)
 	.config()
 	.version(packageJson.version);
