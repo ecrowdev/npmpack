@@ -206,10 +206,12 @@ export function execute(options: Options = {}): void {
 		process.exit(1);
 	}
 
-	const newPackageJson = {
+	const newPackageJson: ObjectType = {
 		...packageJsonObject,
 		...packagejson,
 	};
+
+	delete newPackageJson['0'];
 
 	fs.writeFileSync(
 		`${output}/package.json`,
