@@ -59,9 +59,9 @@ The *output* would look something like this:
 ```
 |__dist
 |__|__<...>
-|___lib
-|___|___<...>
-|___pkg
+|__lib
+|__|__<...>
+|__pkg
 |__|__dist
 |__|__|__<dist files...>
 |__|__<lib files...>
