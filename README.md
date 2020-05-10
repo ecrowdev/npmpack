@@ -57,22 +57,22 @@ The `pkg` folder will include all files from `lib`, the `dist` folder itself, an
 The *output* would look something like this:
 
 ```
-|__dist
-|__|__<...>
-|__lib
-|__|__<...>
-|__pkg
-|__|__dist
-|__|__|__<dist files...>
-|__|__<lib files...>
-|__|__CHANGLOG
-|__|__LICENSE
-|__|__README.md
-|__|__package.json
-|__CHANGLOG
-|__LICENSE
-|__README.md
-|__package.json
+dist
+   <...>
+lib
+   <...>
+pkg
+   dist
+      <dist files...>
+   <lib files...>
+   CHANGLOG
+   LICENSE
+   README.md
+   package.json
+CHANGLOG
+LICENSE
+README.md
+package.json
 ```
 
 #### Flag Options
