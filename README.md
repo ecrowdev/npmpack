@@ -46,13 +46,15 @@ NPM Pack can be interfaced on the command line or through ES2015 imports.
 $ npmpack [...flags]
 ```
 
-Example: Select all files under the `lib`, copy the `dist` directory, and output them under the `pkg` folder.
+**Example**: Select all files under the `lib`, copy the `dist` directory, and output them under the `pkg` folder.
 
 ```sh
 $ npmpack --copy lib/* dist --output pkg
 ```
 
 The `pkg` folder will include all files from `lib`, the `dist` folder itself, and your core package files: `LICENSE`, `README`, `CHANGELOG`, and `package.json`.
+
+The *output* would look something like this:
 
 ```
 |__dist
