@@ -29,7 +29,9 @@
     "workspace",
     "node",
     "js",
-    "library"
+    "library",
+    "organize",
+    "build"
   ],
   "author": "Eric Crowell",
   "license": "MIT",
