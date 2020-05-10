@@ -82,9 +82,9 @@ The *output* would look something like this:
 | --help         | Show help                                           | boolean  |         |
 | --config       | Path to JSON config file                            | file     |         |
 | --copy, -c, -f | Individual files or directories to include          | string[] | []      |
-| --exclude      | Glob pattern(s) of files to exclude                 | string[] | []      |
-| --include      | Glob pattern(s) of files to exclude                 | string[] | []      |
-| --output       | Path to output matched files                        | string   | pkg     |
+| --exclude, -e  | Glob pattern(s) of files to exclude                 | string[] | []      |
+| --include, -i  | Glob pattern(s) of files to exclude                 | string[] | []      |
+| --output, -o   | Path to output matched files                        | string   | pkg     |
 | --packagejson  | JSON string to override package.json properties     | string   | "{}"    |
 | --root         | The root of your project where package.json resides | string   | .       |
 
