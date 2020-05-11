@@ -6,11 +6,11 @@
 [![npm package](https://img.shields.io/npm/v/@ecrowjs/npmpack/latest.svg)](https://www.npmjs.com/package/@ecrowjs/npmpack)
 [![build](https://img.shields.io/travis/ecrowjs/npmpack/master)](https://travis-ci.org/github/ecrowjs/npmpack)
 
-NPM Pack is a tool to help organize a nodejs project by packing the deliverable files into a subfolder with it's own package.json.
+NPM Pack is a tool to help organize a nodejs project by organizing the deliverable files into a subfolder with it's own package.json.
 
 </div>
 
-## Installation
+# Installation
 
 NPM Pack can be installed as an [npm package](https://www.npmjs.com/package/@ecrowjs/npmpack) itself.
 
@@ -30,14 +30,33 @@ npm install -g @ecrowjs/npmpack
 yarn global add @ecrowjs/npmpack
 ```
 
-## Usage
+# Usage
 
 NPM Pack can be interfaced on the command line or through ES2015 imports.
+
+You can add the command to your `package.json` on the "scripts" property like so:
+
+```json
+{
+    "scripts": {
+        "pkg": "npmpack --copy src/**/*.js"
+    }
+}
+```
+
+With the addition above, you can then publish your npm package from the created sub-folder.
+
+```sh
+ $ npm run pkg # Run the script 'pkg' defined in 'package.json'
+ $ cd pkg      # Navigate to the created 'pkg' folder
+ $ npm publish [...your flags] # Publish your package
+```
+
 
 * [CLI Usage](#cli-usage)
 * [Module Usage](#module-usage)
 
-### CLI Usage
+## CLI Usage
 
 * [Flag Options](#flag-options)
 * [Configuration File](#configuration-file)
@@ -46,7 +65,9 @@ NPM Pack can be interfaced on the command line or through ES2015 imports.
 $ npmpack [...flags]
 ```
 
-**Example**: Select all files under the `lib`, copy the `dist` directory, and output them under the `pkg` folder.
+**Example**
+
+ Select all files under the `lib`, copy the `dist` directory, and output them under the `pkg` folder.
 
 ```sh
 $ npmpack --copy lib/* dist --output pkg
@@ -75,7 +96,7 @@ README.md
 package.json
 ```
 
-#### Flag Options
+### Flag Options
 
 | Flag           | Description                                         | Type     | Default |
 |----------------|-----------------------------------------------------|----------|---------|
@@ -88,11 +109,11 @@ package.json
 | --packagejson  | JSON string to override package.json properties     | string   | "{}"    |
 | --root         | The root of your project where package.json resides | string   | .       |
 
-#### Configuration File
+### Configuration File
 
 When using the `--config` option, you can pass the path to a json file that contains the options you want to pass in.
 
-For example:
+**Example**:
 
 ```sh
 $ npmpack --config npmpack.json
@@ -112,9 +133,9 @@ $ npmpack --config npmpack.json
 }
 ```
 
-### Module Usage
+## Module Usage
 
-NPM Pack can also be included as a module for one of your custom build script.
+NPM Pack can also be included as a module for one of your custom build scripts.
 
 ```javascript
 // CommonJS
