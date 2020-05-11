@@ -1,17 +1,16 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "rootDir": ".",
+    "rootDir": "./src",
     "noImplicitAny": true,
     "removeComments": true,
     "esModuleInterop": true,
     "strict": true,
     "sourceMap": true,
     "declaration": true,
-    "outDir": ".lib",
-    "declarationDir": ".lib",
-    "resolveJsonModule": true
+    "outDir": "./.lib",
+    "declarationDir": "./.lib"
   },
-  "files": ["./index.ts", "./npmpack.ts"],
+  "include": ["./src/"],
   "exclude": ["./**/*.*.ts"]
 }

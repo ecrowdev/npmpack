@@ -7,7 +7,6 @@
 
 import yargs = require('yargs');
 import * as NPMPack from './index';
-import packageJson from './package.json';
 
 /**
  * Yargs options
@@ -63,7 +62,7 @@ const command = yargs
 	)
 	.options(yargsOptions)
 	.config()
-	.version(packageJson.version);
+	.version('1.0.0');
 
 /**
  * Get arguments as object.

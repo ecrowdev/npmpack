@@ -10,7 +10,7 @@
     "cli": "node npmpack.js",
     "tscli": "ts-node-script npmpack.ts",
     "build": "npm run clean && tsc -p ./tsconfig.json && npm run pkg",
-    "pkg": "ts-node-script npmpack.ts --copy .lib/* --output .pkg",
+    "pkg": "ts-node-script src/npmpack.ts --copy .lib/* --output .pkg",
     "clean": "rimraf .lib .pkg",
     "test": "npm run test:lint",
     "test:unit": "jest",
